@@ -32,7 +32,8 @@ df_cases = df_georgia.loc[: , ["date", "cases"]]
 df_cases.head()
 
 fig = plt.figure()
-ax = fig.add_axes([0,0,2,2]) #[starting poeint on x, starting point on y, lenght, width]
+ax = fig.add_subplot(111)
+#ax = fig.add_axes([0,0,2,2]) #[starting poeint on x, starting point on y, lenght, width]
 dates = df_cases["date"] #created variable for that column
 cases = df_cases["cases"] #created varible for y 
 plt.plot(dates, cases)
@@ -41,7 +42,7 @@ plt.xlabel("Dates")
 plt.ylabel("Number of Cases (mil)")
 plt.title("Cases of COVID-19 Over Time (US)")
 
-#plt.show()
+plt.show()
 #plt.write_html("covidCases.html", auto_open = True)
 
 def dfFormatter(df, selectColumn):
