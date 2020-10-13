@@ -16,7 +16,7 @@ def plot_cases(state): # defines function
   user_state = nyt_df.loc[nyt_df["state"] == state] # seperates rows based on the state the user enters
   new_df = user_state.loc[: , ['date', 'cases']] #.loc[rows, columns] # the : means "select all"
   fig = plt.figure() # sets the figure
-  ax = fig.add_axes([0, 0, 2, 2]) #resizes figure: [starting point x, startng point y, length, width]
+  ax = fig.add_axes([0.1, 0.1, 0.7, 0.7]) #resizes figure: [starting point x, startng point y, length, width]
   dates = new_df['date'] # x values
   cases = new_df['cases'] # y values
 
@@ -34,7 +34,7 @@ def plot_deaths(state): # defines function
   user_state = nyt_df.loc[nyt_df["state"] == state]  # Seperates rows based on the state the user enters
   new_df = user_state.loc[: , ['date', 'deaths']] #.loc[rows, columns] # the : means "select all"
   fig = plt.figure() # sets the figure
-  ax = fig.add_axes([0, 0, 2, 2]) #resizes figure: [starting point x, startng point y, length, width]
+  ax = fig.add_axes([0.1, 0.1, 0.7, 0.7]) #resizes figure: [starting point x, startng point y, length, width]
   dates = new_df['date'] # x values
   deaths = new_df['deaths'] # y values
 
