@@ -54,7 +54,7 @@ def demo_of_deathsPlot(state): # defines function
   male_deaths = male_rows["COVID-19 Deaths"] # stores covid-19 deaths of males in a variable
 
   fig = plt.figure() # sets the figure
-  ax = fig.add_axes([0, 0, 3, 2]) #resizes figure: [starting point x, startng point y, length, width]
+  ax = fig.add_axes([0.1, 0.1, 0.7, 0.7]) #resizes figure: [starting point x, startng point y, length, width]
   ax.set_ylim(0, (max(female_deaths)+ 5)) # sets y axis limit 0 to maximum values plus 5
   plt.plot(female_ages, female_deaths, label = "Female", color = "pink") # 
   plt.plot(male_ages, male_deaths, label = "Male", color = "cornflowerblue")
@@ -83,7 +83,7 @@ def demos_of_deathsBar(state):
   bar_width = 0.35 # variable holds the value of the bar widths
 
   fig = plt.figure() # sets the figure
-  ax = fig.add_axes([0, 0, 2.5, 2])  #resizes figure: [starting point x, startng point y, length, width]
+  ax = fig.add_axes([0.1, 0.1, 0.7, 0.7])  #resizes figure: [starting point x, startng point y, length, width]
   plt.ylabel("Number of Deaths") # displays the y-axis label
   plt.title(state + "'s COVID-19 deaths by age and gender") # displays the title
   
