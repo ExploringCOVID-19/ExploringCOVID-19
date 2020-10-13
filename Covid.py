@@ -56,71 +56,25 @@ df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master
 newdf = df.loc[:, ["date", "state", "cases"]]
 newdf.head()
 
-
-state = input("What state would you like to see COVID- 19 data from? (If you want all states choose ALL)")
+state = input("What state would you like to see COVID- 19 data from? (If you want all states choose ALL STATES)")
 statedf = newdf.loc[df["state"] == state]
 
-if state == "ALL":
+if state == "ALL STATES":
   dates = newdf["date"]
   cases = newdf["cases"]
 else:
-  dates = statedf["date"]
-  cases = statedf["cases"]
+  datesa = statedf["date"]
+  casesa = statedf["cases"]
 
-fig = plt.figure()
-ax = fig.add_axes([0, 0, 2, 2])
+fig = plt.figure(figsize = (15,5))
+ax = fig.add_subplot(111)
+ax.xaxis.set_major_locator(plt.MaxNLocator(5))
 plt.plot(dates, cases)
 plt.bar(dates, cases)
 plt.xlabel("Date")
 plt.ylabel("Number of Cases (millions)")
 plt.title("COVID 19 Cases in " + state)
 plt.show()
-
-
-# def COVIDOVERTIME(Date)
-# newdf = df.loc[:, ["date", "state", "cases"]]
-# newdf.head()
-
-# date = input("What day like to see COVID-19 data from? ex. 2020-01-21 (If you want all dates choose ALL)")
-
-# if date == "ALL":
-#   dates = newdf["date"]
-#   cases = newdf["cases"]
-# else:
-#   datedf = statedf.loc[df["date"] == date]
-#   dates = datedf["date"]
-#   cases = datedf["cases"]
-
-# fig = plt.figure()
-# ax = fig.add_axes([0, 0, 2, 2])
-# plt.plot(dates, cases)
-# plt.bar(dates, cases)
-# plt.xlabel("Date")
-# plt.ylabel("Number of Cases (millions)")
-# plt.title("COVID 19 Cases in " + state)
-# plt.show()
-# COVIDOVERTIME("State")
-
-
-
-
-# def CasesOverTime(State):
-#     fig = plt.figure()
-#     ax = fig.add_axes([0, 0, 2, 2])
-#     ax.xaxis.set_major_locator(plt.MaxNLocator(5))
-
-#     date = input("What day like to see COVID-19 data from? (ex. 2020-01-21)")
-#     datedf = newdf.loc[df["date"] == date]
-
-#     dates = datedf["date"]
-#     cases = datedf["cases"]
-#     plt.plot(dates, cases)
-#     plt.bar(dates, cases)
-#     plt.xlabel("Date")
-#     plt.ylabel("Number of Cases (millions)")
-#     plt.title("COVID 19 Cases in " + date)
-#     plt.show()
-# CasesOverTime("date")
 
 # """Call the functions on your assigned state to visualize the data."""
 
