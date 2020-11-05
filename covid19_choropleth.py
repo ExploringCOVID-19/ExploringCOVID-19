@@ -1,13 +1,8 @@
-#Import all libraries you may need in this cell:
 import numpy as np # used to arrange x-axis values for bar plot
 import matplotlib.pyplot as plt #to make a visualization
 import pandas as pd #to read in csv files and create dataframes
-import plotly.graph_objects as go # to create a colorful map visualization 
+import plotly.graph_objects as go
 from matplotlib.dates import DateFormatter #to use matplotlib's date formatter
-# %matplotlib inline 
-# ^ sets the backend of matplotlib to the 'inline' backend.
-# With this backend, the output of plotting commands is displayed inline within frontends like 
-# the Jupyter notebook, directly below the code cell that produced it.
 
 statesList = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
   "Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois",
@@ -37,99 +32,24 @@ longitudes = [-86.279118,-134.419740,-112.073844, -92.331122,-121.468926 ,-104.9
               ,-100.779004 ,-83.000647 , -97.534994,-123.029159 ,-76.875613 , -71.422132, -81.035, -100.336378
               ,-86.784 ,-97.75 ,-111.892622 ,-72.57194 ,-77.46 ,-122.893077 ,-81.633294 ,-89.384444 ,-104.802042]
 
-nyt_df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
 
-#Dataframe Formatter
-def dfFormatter(df, selectColumn):
-    #Separate df_formatted from df. Create list of states and their latitudes and longitudes.
-    df_formatted = pd.DataFrame(statesList, columns = ['state'])
-    df_formatted['lat'] = latitudes
-    df_formatted['long'] = longitudes
-    
-    #Create columns for each date, start off by zeroing out everything.
-    #previousDate = datetime.datetime(2020, 1, 1) #Commented out because datetime is no longer a type.
-    previousDate = "2020-01-01"
-    for i in range(len(df['date'])):
-        if df['date'][i] != previousDate:
-            df_formatted[df['date'][i]] = 0
+#Read in data
+df = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv")
+df.head()
+df.tail()
 
-    #Set index to states temporarily.
-    df_formatted.set_index('state', inplace=True)
+total_list = df.groupby('Country/Region')['5/26/20'].sum().tolist() #Grouped cases based on countries and summed them
 
-    
-    #Select which data you want to use based on the column that you are plotting (cases or deaths)
-    if selectColumn == 'cases':
-        #Get number of cases from df and put them in df_formatted.  
-        for i in range(len(df['state'])):
-            df_formatted.loc[df['state'][i], df['date'][i]] = df['cases'][i]
-            #Format for .loc : df_formatted.loc['index/row label', 'column label'] = 'value'
-    elif selectColumn == 'deaths':
-        for i in range(len(df['state'])):
-            df_formatted.loc[df['state'][i], df['date'][i]] = df['deaths'][i]
-            #Format for .loc : df_formatted.loc['index/row label', 'column label'] = 'value'
+country_list = df['Country/Region'].tolist() #gets the list of all countries in the dataframe
+country_set = set(country_list) #converts the list into a "set" data type
+country_list = list(country_set) #converts the "set" into a "list" data type and stores it in country_list variable
 
-    
-    #Reset index when done so that state becomes a column without being the index.
-    df_formatted.reset_index(inplace=True)
-    
-    #Drop last 5 rows because we are focusing on the 50 states.
-    df_formatted.drop([50,51,52,53,54], inplace=True)
-        
-    return df_formatted
+country_list.sort()
 
-#Call the function and assign what it returns to the dataframe variables you will be using.
-cases = dfFormatter(nyt_df, "cases")
-cases["State abbreviations"] = stateAbbreviationList
-deaths = dfFormatter(nyt_df, "deaths")
-deaths["State abbreviations"] = stateAbbreviationList
+new_df = pd.DataFrame(list(zip(country_list, total_list)),
+                     columns = ['Country','Total Recoveries'])
+#Creates a dataframe with two columns (Country and Total Recoveries) and stores it in the variable, new_df
 
-def death_map(date): # defines function
-  colors =['#f7fbff','#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#08519c','#08306b'] #Hex values
-  fig = go.Figure(data = go.Choropleth( # creates a figure and assigns it to a function that creates a choropleth map
-                    locationmode= "USA-states", # determines the set of locations used to match entries in "locations" parameter
-                    locations = deaths["State abbreviations"], # sets the coordinates via location names(abbreviations)
-                    z = deaths[date], # sets the color values based on the date
-                    colorscale = colors, # sets the colorscale based on array of HEX values
-                    reversescale = False, # reverses the color mapping if True
-                    autocolorscale = False, # reads our color scale
-                    colorbar_title = "Number of COVID-19 deaths (US)" # displays title of colorbar 
-    ))
+new_df.head()
 
-  fig.update_layout(
-        title_text = "Number of COVID-19 deaths (US)", # displays title of map 
-        geo = dict(
-            showcoastlines = True, # displays coastlines in map
-            scope = "usa" # sets scope of map to the USA
-        )
-    )
-  fig.write_html("deathsperstate.html", auto_open = True)
 
-  def caseFatalityrate_map(date):
-    colors = ['#f7fcf5','#e5f5e0','#c7e9c0','#a1d99b','#74c476','#41ab5d','#238b45','#006d2c','#00441b']
-    case_fatalityRate = deaths[date]/cases[date]
-    fat_fig = go.Figure(data = go.Choropleth(
-                    locationmode= "USA-states",
-                    locations = deaths["State abbreviations"],
-                    z = (case_fatalityRate * 100),
-                    colorscale = colors,
-                    reversescale = False,
-                    autocolorscale = False, #reads our color scale
-                    colorbar_title = "COVID-19 Case Fatality rates (percent)"
-    ))
-    
-    fat_fig.update_layout(
-        title_text = "COVID-19 Case Fatality rates (US)",
-        geo = dict(
-            showcoastlines = True,
-            scope = "usa"
-        )
-    )
-    fat_fig.write_html("casefatrate.html", auto_open = True)
-
-decision = str(input("Type \'A\' to view a map of COVID-19 case fatality rates or \'B\' to view a map of COVID-19 deaths. "))
-if decision is "A":
-  user_caseFat_date = str(input("Which date would you like to view COVID-19 case fatality rates of (YYYY-MM-DD)? "))
-  caseFatalityrate_map(user_caseFat_date)
-elif decision is "B":
-  user_date = str(input("Which date would you like to see COVID-19 deaths for (YYYY-MM-DD)? "))
-  death_map(user_date)
