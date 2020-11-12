@@ -46,8 +46,8 @@ def plot(data,state):
 interested = True 
 while interested == True:
     data = input("Are you interested in seeing Covid-19 cases or deaths?").lower() #variable for cases or deaths
-    more_info = input("would you like to see a list of all of the states? please type 'yes' or 'no' ").lower()
-    if more_info == 'yes':
+    more_info = input("Would you like to see a list of all of the states? please type 'yes' or 'no' ").lower()
+    if more_info == "yes":
       print(statesList)
     state = input("What state do you want to see Covid-19 " + data + " for?") # variable for state
     fixeddata = typo(data)
