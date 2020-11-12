@@ -27,7 +27,7 @@ longitudes = [-86.279118,-134.419740,-112.073844, -92.331122,-121.468926 ,-104.9
               ,-86.784 ,-97.75 ,-111.892622 ,-72.57194 ,-77.46 ,-122.893077 ,-81.633294 ,-89.384444 ,-104.802042]
 
 df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
-
+# this is a test 
 def typo(word): 
   placeholder = ""
   for i in word: 
