@@ -40,7 +40,7 @@ def plot(data,state):
   ax.xaxis.set_major_locator(plt.MaxNLocator(5))#displays that many ticks evenly
   plt.title(data + " of COVID-19 Over Time in " + state)
 
- 
+ #this is a test 
   return plt.plot and plt.bar and  plt.show()
 
 interested = True 
