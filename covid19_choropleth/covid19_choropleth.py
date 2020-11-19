@@ -1,4 +1,3 @@
-#Import all libraries you may need in this cell:
 import choropleth_module
 decision = str(input("Type \'A\' to view a map of COVID-19 case fatality rates or \'B\' to view a map of COVID-19 deaths. "))
 if decision == "A":
