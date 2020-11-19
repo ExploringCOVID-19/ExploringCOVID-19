@@ -4,7 +4,7 @@ import pandas as pd #to read in csv files and create dataframes
 import plotly.graph_objects as go # to create a colorful map visualization 
 from matplotlib.dates import DateFormatter #to use matplotlib's date formatter
 # %matplotlib inline 
-# ^ sets the backend of matplotlib to the 'inline' backend.
+# ^ sets the backend of matplotlib to the 'inline' backend
 # With this backend, the output of plotting commands is displayed inline within frontends like 
 # the Jupyter notebook, directly below the code cell that produced it.
 nyt_df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
