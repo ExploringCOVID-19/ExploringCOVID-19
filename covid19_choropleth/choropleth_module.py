@@ -7,6 +7,7 @@ from matplotlib.dates import DateFormatter #to use matplotlib's date formatter
 # ^ sets the backend of matplotlib to the 'inline' backend.
 # With this backend, the output of plotting commands is displayed inline within frontends like 
 # the Jupyter notebook, directly below the code cell that produced it.
+
 nyt_df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
 
 statesList = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
@@ -37,6 +38,8 @@ longitudes = [-86.279118,-134.419740,-112.073844, -92.331122,-121.468926 ,-104.9
                ,-100.779004 ,-83.000647 , -97.534994,-123.029159 ,-76.875613 , -71.422132, -81.035, -100.336378
                ,-86.784 ,-97.75 ,-111.892622 ,-72.57194 ,-77.46 ,-122.893077 ,-81.633294 ,-89.384444 ,-104.802042]
 
+
+#Dataframe Formatter
 def dfFormatter(df, selectColumn):
      #Separate df_formatted from df. Create list of states and their latitudes and longitudes.
      df_formatted = pd.DataFrame(statesList, columns = ['state'])
@@ -122,4 +125,3 @@ def caseFatalityrate_map(date):
          )
      )
      fat_fig.write_html("casefatrate.html", auto_open = True)
-
