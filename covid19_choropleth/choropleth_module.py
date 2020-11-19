@@ -8,6 +8,7 @@ from matplotlib.dates import DateFormatter #to use matplotlib's date formatter
 # With this backend, the output of plotting commands is displayed inline within frontends like 
 # the Jupyter notebook, directly below the code cell that produced it.
 nyt_df = pd.read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
+
 statesList = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
    "Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois",
    "Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland",
@@ -72,6 +73,8 @@ def dfFormatter(df, selectColumn):
      df_formatted.drop([50,51,52,53,54], inplace=True)
 
      return df_formatted
+
+#Call the function and assign what it returns to the dataframe variables you will be using.
 cases = dfFormatter(nyt_df, "cases")
 cases["State abbreviations"] = stateAbbreviationList
 deaths = dfFormatter(nyt_df, "deaths")
@@ -118,4 +121,5 @@ def caseFatalityrate_map(date):
              scope = "usa"
          )
      )
-     fat_fig.write_html("deathsperstate.html", auto_open = True)
+     fat_fig.write_html("casefatrate.html", auto_open = True)
+
