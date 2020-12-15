@@ -1,7 +1,10 @@
 import pandas as pd
 import plotly.graph_objects as go
 df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
-day = input("What date would you like ot see Covid-19 data from? (yyyy-mm-dd)")
+
+def day():
+    date = str(input("which date would you like to look at?:"))
+    return date 
 
 def choroplethmap(day):
     newdf = df.loc[df["date"] == day]
@@ -22,8 +25,6 @@ def choroplethmap(day):
     fig.update_layout(
         title_text = "Global Covid-19 Positivity Rates (millions)",
         geo = dict(
-        showcoastlines = True, coastlinecolor="blue",
+        showcoastlines = True, coastlinecolor= "blue",
         ))
     fig.show()
-    # fig.write_html("globalpositivityrate.html", auto_open=True) 
-choroplethmap(day)
