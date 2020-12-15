@@ -21,25 +21,27 @@ def choroplethmap(day):
     fig.update_layout(
         title_text = "Global Covid-19 Positivity Rates (millions)",
         geo = dict(
-        showcoastlines = True, coastlinecolor= "blue",
+        showcoastlines = True, coastlinecolor = "blue",
         ))
     fig.show()
     return
 
-def day():
-    interested = True 
-    while interested == True:
-        date = str(input("which date would you like to look at? (YYYY-MM-DD) (starting date is 2020-01-24)"))
-        date_list = df['date'].tolist()
-        check = date in date_list
-        if check == True:
-            choropleth(date)
-            Continue = input("Would you like to keep investigating? please type 'yes' or 'no' ")
-            if Continue.lower() == "yes": 
-                interested = True 
-            else:
-                interested = False
-                break
+def day(): 
+    date = str(input("Which date would you like to look at? (YYYY-MM-DD) (starting date is 2020-01-24)"))
+    date_list = df['date'].tolist()
+    check = date in date_list
+    if check == True:
+        choropleth(date)
+     else:
+        print("This date is not inside of the data. Please try again.")
+        
+def contining():
+    interested = True
+     while interested == True:
+        Continue = input("Would you like to see global covid19 data? please type 'yes' or 'no' ")
+        if Continue.lower() == "yes":
+            day()
         else:
-            print("This date is invalid, please enter another one.")
-    return 
+           interested = False
+           break
+    return interested
