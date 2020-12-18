@@ -24,7 +24,7 @@ def choroplethmap(day):
         geo = dict(
         showcoastlines = True, coastlinecolor = "blue",
         ))
-    fig.show()
+    fig.write_html("positivityrate.html", auto_open = True)    
     return
 
 def day(): 
