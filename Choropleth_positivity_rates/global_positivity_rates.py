@@ -1,8 +1,12 @@
 
-def choroplethmap(day):
+def datafilter(day):
     newdf = df.loc[df["date"] == day]
     newdf2 = newdf.loc[:, ["positive_rate", "location"]]
     newdf3 = newdf2[df.location != "World"]
+    return newdf3
+  
+def choroplethmap(day):
+    datafilter(day)
     colors = ["#cce5ff", "#b3d7ff", "#99caff", "#80bdff", "#66b0ff", "#4da3ff", "#3396ff", 
                 "#1a88ff", "#007bff", "#006fe6", "#0063cc", "#0056b3", "#004a99", "#003e80", 
                 "#003166", "#00254d", "#001933", "#000c1a","#000000"]
@@ -28,7 +32,7 @@ def day():
     date_list = df['date'].tolist()
     check = date in date_list
     if check == True:
-        choropleth(date)
+        choroplethmap(date)
      else:
         print("This date is not inside of the data. Please try again.")
         
