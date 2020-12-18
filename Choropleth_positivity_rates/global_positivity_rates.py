@@ -1,6 +1,3 @@
-import pandas as pd
-import plotly.graph_objects as go
-df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
 
 def choroplethmap(day):
     newdf = df.loc[df["date"] == day]
@@ -9,14 +6,14 @@ def choroplethmap(day):
     colors = ["#cce5ff", "#b3d7ff", "#99caff", "#80bdff", "#66b0ff", "#4da3ff", "#3396ff", 
                 "#1a88ff", "#007bff", "#006fe6", "#0063cc", "#0056b3", "#004a99", "#003e80", 
                 "#003166", "#00254d", "#001933", "#000c1a","#000000"]
-    fig = go.Figure(data=go.Choropleth(
-        locationmode = "country names",
-        locations = newdf3["location"],
-        z = (newdf3["positive_rate"]) * 100,
-        colorscale = colors,
-        colorbar = dict(nticks=10),
-        autocolorscale = False,
-        reversescale = False,
+    fig = go.Figure(data=go.Choropleth( # creates a figure and assigns it to a function that creates a choropleth map        locationmode = "country names",
+         locations = newdf3["location"],
+         z = newdf3["positive rate"] * 100, # sets the color values based on the date
+         colorscale = colors, # sets the colorscale based on array of HEX values
+         reversescale = False, # reverses the color mapping if True
+         autocolorscale = False, # reads our color scale        
+         colorbar = dict(nticks=10),
+         colorbar_title = "Global Covid-19 Positivity Rates" # displays title of colorbar 
         ))
     fig.update_layout(
         title_text = "Global Covid-19 Positivity Rates (millions)",
