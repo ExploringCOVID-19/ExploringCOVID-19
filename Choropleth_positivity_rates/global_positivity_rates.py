@@ -1,12 +1,24 @@
 # The purpose of this script is to map the global positivity rates from February 2020 to the present. There is an animated feature so that users can view the dates across different periods in time. It reads in the data from owid covid data and isolates the columns "positive_rate", "location", and "date" and filters out unwanted data. Then, we use the .choropleth() function from plotly express to display the data with animation.
 import pandas as pd
 import plotly.express as px
+import numpy as np 
 def datafilter():
     df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
     df["positive_rate"] = df["positive_rate"]*100
     newdf = df.loc[:, ["positive_rate", "location", "date"]]
     newdf2 = newdf[df.location != "World"]
+    # newdf3 = newdf2.loc[newdf2["positive_rate"]==]
+    # positiveList = list(df["positive_rate"])
+    count1 = 0
+    for n, i in enumerate(newdf2["positive_rate"]): 
+        newdf2["positive_rate"][0] == 0
+         if np.isnan(i) == True and newdf2["location"][n-1] == newdf2["location"][n]:
+                i = newdf2["positive_rate"][n-1]
+        
+
+            
     return newdf2
+
 def animatedChoroplethmap():
     our_df = datafilter()
     print("NOTE: Recent data may not be available")
