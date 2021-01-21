@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 def datafilter():
     df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
-    #positive_rate = df["positive_rate"] * 100
+    df["positive_rate"] = df["positive_rate"]*100
     newdf = df.loc[:, ["positive_rate", "location", "date"]]
     newdf2 = newdf[df.location != "World"]
     return newdf2
