@@ -5,17 +5,17 @@ import numpy as np
 def datafilter():
     df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
     df["positive_rate"] = df["positive_rate"]*100
-    newdf = df.loc[:, ["positive_rate", "location", "date"]]
-    newdf2 = newdf[df.location != "World"]
+    newdf = df.loc[:, ["positive_rate", "location", "date"]].copy()
+    newdf2 = newdf[df.location != "World"].copy()
     # newdf3 = newdf2.loc[newdf2["positive_rate"]==]
     # positiveList = list(df["positive_rate"])
-    count1 = 0
-    for n, i in enumerate(newdf2["positive_rate"]): 
-        newdf2["positive_rate"][0] == 0
-         if np.isnan(i) == True and newdf2["location"][n-1] == newdf2["location"][n]:
+    for n , i in enumerate(newdf2["positive_rate"]): 
+        newdf2["positive_rate"][0] = 0
+        if n == 0: 
+           continue  
+        elif  newdf2["location"][n-1] == newdf2["location"][n]:
+            if np.isnan(i) == True:
                 i = newdf2["positive_rate"][n-1]
-        
-#test 
             
     return newdf2
 
