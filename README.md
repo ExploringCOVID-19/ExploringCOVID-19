@@ -12,4 +12,6 @@ Our project's mission is to...
 - Choropleth_positivity_rates
 - covid19_choropleth
 
-helllo...
+# CONTRIBUTORS
+- Nyla A, Mahia C, Lin F, Chigozirim I, Dina N, Florianny N
+- Special thanks to Carol P!
