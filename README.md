@@ -19,13 +19,13 @@ Our project's mission is to...
 # CONTRIBUTORS
 - Nyla A, Mahia C, Lin F, Chigozirim I, Dina N, Florianny N
 - Special thanks to Carol P!
-# TECHNOLOGIES: 
-    ## Source code editor: 
-        - Visual Studio Code 
-    ## Python Libraries:
-        - matplotlib → specifically matplotlib.pyplot
-        - numpy
-        - pandas
-        - plotly → specifically plotly.express and plotly.graph_objects
-    ## Tool for collaboration:
-        -Github 
+# TECHNOLOGIES 
+  ## Source code editor: 
+  - Visual Studio Code 
+  ## Python Libraries:
+  - matplotlib → specifically matplotlib.pyplot
+  - numpy
+  - pandas
+  - plotly → specifically plotly.express and plotly.graph_objects
+  ## Tool for collaboration:
+  - Github 
