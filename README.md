@@ -15,7 +15,7 @@ Our project's mission is to...
 # CONTRIBUTORS
 - Nyla A, Mahia C, Lin F, Chigozirim I, Dina N, Florianny N
 - Special thanks to Carol P!
-# TECHNOLOGIES: 
+# TECHNOLOGIES 
     * Source code editor: 
         - Visual Studio Code 
     * Python Libraries:
