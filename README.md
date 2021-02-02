@@ -12,6 +12,9 @@ Our project's mission is to...
 - Choropleth_positivity_rates
 - covid19_choropleth
 
+# LANGUAGE 
+- We use mostly Python 3 for our project. Python is a high-level programming language with a wide range of uses, making it ideal for what we plan to do. In the future, we plan to use HTML and CSS in creating a website to host our findings.
+
 # SOURCES 
 - OWID
  * We utilized a [csv file](https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv) from the *Our World in Data Repository*. This data updates depending on when the countries provide them. 
