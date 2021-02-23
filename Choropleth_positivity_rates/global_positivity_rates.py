@@ -6,23 +6,22 @@ def datafilter():
     df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
     df["positive_rate"] = df["positive_rate"]*100
     newdf = df.loc[:, ["positive_rate", "location", "date"]].copy()
-    newdf2 = newdf[df.location != "World"].copy()
     # newdf3 = newdf2.loc[newdf2["positive_rate"]==]
     # positiveList = list(df["positive_rate"])
-    for n , i in enumerate(newdf2["positive_rate"]): 
-        newdf2["positive_rate"][0] = 0
+    newdf["positive_rate"][0] = 0
+    for n , i in enumerate(newdf["positive_rate"]):
         if n == 0: 
-           continue  
-        elif  newdf2["location"][n-1] == newdf2["location"][n]:
-            if np.isnan(i) == True:
-                i = newdf2["positive_rate"][n-1]
-            
-    return newdf2
+           continue
+        if newdf["location"][n-1] != newdf["location"][n] and np.isnan(i):
+            newdf["positive_rate"][n] = 0
+
+    newdf["positive_rate"].fillna(method = "ffill")
+    return newdf
 
 def animatedChoroplethmap():
     our_df = datafilter()
     print("NOTE: Recent data may not be available")
-    colors = ['#f7fbff','#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#08519c','#08306b']
+    colors = px.colors.sequential.Jet
     fig = px.choropleth(our_df,
     locationmode= "country names",
     locations = our_df["location"],
