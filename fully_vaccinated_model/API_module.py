@@ -4,4 +4,4 @@ API = "https://api.census.gov/data/2019/pep/charagegroups?get=NAME,POP&for=us:*&
  
 response = requests.get(API)                        # call the API/collect response
 formattedResponse = json.loads(response.text)[1:]   # create JSON with data (don't need column one)
-population = int(formattedResponse[1][1])           # temporary population
+population = int(formattedResponse[0][1])           # temporary population
