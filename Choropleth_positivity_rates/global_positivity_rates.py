@@ -1,48 +1,60 @@
+# The purpose of this script is to map the global positivity rates from February 2020 to the present. There is an animated feature so that users can view the dates across different periods in time. It reads in the data from owid covid data and isolates the columns "positive_rate", "location", and "date" and filters out unwanted data. Then, we use the .choropleth() function from plotly express to display the data with animation.
+import pandas as pd
+import plotly.express as px
+import numpy as np 
+def datafilter():
+    df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
+    df["positive_rate"] = df["positive_rate"]*100
+    newdf = df.loc[:, ["positive_rate", "location", "date"]].copy()
+    # newdf3 = newdf2.loc[newdf2["positive_rate"]==]
+    # positiveList = list(df["positive_rate"])
+    newdf["positive_rate"][0] = 0
+    for n , i in enumerate(newdf["positive_rate"]):
+        if n == 0: 
+           continue
+        if newdf["location"][n-1] != newdf["location"][n] and np.isnan(i):
+            newdf["positive_rate"][n] = 0
 
-def datafilter(day):
-    newdf = df.loc[df["date"] == day]
-    newdf2 = newdf.loc[:, ["positive_rate", "location"]]
-    newdf3 = newdf2[df.location != "World"]
-    return newdf3
-  
-def choroplethmap(day):
-    datafilter(day)
-    colors = ["#cce5ff", "#b3d7ff", "#99caff", "#80bdff", "#66b0ff", "#4da3ff", "#3396ff", 
-                "#1a88ff", "#007bff", "#006fe6", "#0063cc", "#0056b3", "#004a99", "#003e80", 
-                "#003166", "#00254d", "#001933", "#000c1a","#000000"]
-    fig = go.Figure(data=go.Choropleth( # creates a figure and assigns it to a function that creates a choropleth map        locationmode = "country names",
-         locations = newdf3["location"],
-         z = newdf3["positive rate"] * 100, # sets the color values based on the date
-         colorscale = colors, # sets the colorscale based on array of HEX values
-         reversescale = False, # reverses the color mapping if True
-         autocolorscale = False, # reads our color scale        
-         colorbar = dict(nticks=10),
-         colorbar_title = "Global Covid-19 Positivity Rates" # displays title of colorbar 
-        ))
+    newdf["positive_rate"].fillna(method = "ffill")
+    return newdf
+
+def animatedChoroplethmap():
+    our_df = datafilter()
+    print("NOTE: Recent data may not be available")
+    colors = px.colors.sequential.Jet
+    fig = px.choropleth(our_df,
+    locationmode= "country names",
+    locations = our_df["location"],
+    color = "positive_rate", # sets the color values based on the date
+    color_continuous_scale = colors, # sets the colorscale based on array of HEX values
+    hover_name = our_df["location"],  
+    # range_color = [0, 10],
+    animation_frame = our_df["date"],
+    # colorbar = dict(nticks=10),
+    title = "Global Covid-19 Positivity Rates (millions)"
+    )
     fig.update_layout(
-        title_text = "Global Covid-19 Positivity Rates (millions)",
+        # title_text = "Global Covid-19 Positivity Rates (millions)",
         geo = dict(
         showcoastlines = True, coastlinecolor = "blue",
         ))
     fig.write_html("positivityrate.html", auto_open = True)    
-    return
-
-def day(): 
-    date = str(input("Which date would you like to look at? (YYYY-MM-DD) (starting date is 2020-01-24)"))
-    date_list = df['date'].tolist()
-    check = date in date_list
-    if check == True:
-        choroplethmap(date)
-     else:
-        print("This date is not inside of the data. Please try again.")
-        
-def contining():
-    interested = True
-     while interested == True:
-        Continue = input("Would you like to see global covid19 data? please type 'yes' or 'no' ")
-        if Continue.lower() == "yes":
-            day()
-        else:
-           interested = False
-           break
-    return interested
+# def day(): 
+#     date = str(input("Which date would you like to look at? (YYYY-MM-DD) (starting date is 2020-01-24)"))
+#     date_list = df['date'].tolist()
+#     check = date in date_list
+#     if check == True:
+#         choroplethmap(date)
+#      else:
+#         print("This date is not inside of the data. Please try again.")
+# def contining():
+#     interested = True
+#      while interested == True:
+#         Continue = input("Would you like to see global covid19 data? please type 'yes' or 'no' ")
+#         if Continue.lower() == "yes":
+#             day()
+#         else:
+#            interested = False
+#            break
+#     return interested
+animatedChoroplethmap()
