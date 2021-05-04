@@ -1,7 +1,11 @@
-# use pandas to read in data
+import data_filter
+import model
+import give_answer_module
 
-# pass data to formatting function
+df_vaccinated = data_filter.US_vaccinated_OWID_filter()
 
-# pass result to the function that makes and displays the model
+prediction = model.vaccination_rate_prediction(90,df_vaccinated)
 
-# chichi
+date = give_answer_module.answer(prediction)
+
+print("Covid restrictions are expected to lift on ", date)
