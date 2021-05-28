@@ -1,0 +1,38 @@
+/*applies to all pages*/ 
+*{
+    font-family: 'Raleway', sans-serif;
+}
+ul {
+    list-style-type: none;
+  }
+a {
+    text-decoration: none;
+}
+.bar-over-nav{
+    height: 200px;
+    width: 100%;
+    background-color: rgb(108, 108, 245);
+}
+
+.nav-bar{
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgb(84, 69, 170);
+    line-height: 30px;
+    padding: 10px 10px;
+}
+.nav-bar li { /* do next: make each page button in nav look like a button (like in carol's image) */
+    font-size: 24px;
+    background-color: green;
+  }
+.nav-bar a{
+    color: rgb(0, 0, 0);
+}
+
+.nav-bar a:hover {
+background-color: rgb(63, 51, 133);
+}
+
+/*purpose page*/
