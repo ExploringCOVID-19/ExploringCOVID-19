@@ -1,0 +1,43 @@
+.cards {
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap-reverse;
+    
+    margin-left: 20%;
+    margin-right: 20%;
+  
+}
+.cards div {
+    margin-right: 60px;
+    /* Repetitive code */
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: auto;
+    width: 30%;
+    height: 300px;
+    margin-top: 50px;
+​
+}
+
+
+.card1 {
+    background-image: url("./Documents/visualizations_pics/Fully_vaccinated_prediction.jpg");
+}
+
+.card2 {
+    background-image: url("");
+}
+
+.card3 {
+    background-image: url("");
+}
+
+.card4 {
+    background-image: url("");
+}
+
+.card5 {
+    background-image: url("");
+}
