@@ -38,12 +38,22 @@
                     <li> There were about 170.7M confirmed cases of COVID-19 worldwide</li> 
                     <li> About 297M doses of the vaccine was given in the United States</li> 
                 </ul>
-            </div>
-        <style> 
-            li {
-                list-style-type: circle;
-            }
-        </style> 
+         </div>
+    
+                <script class = "chatbot">
+                    window.watsonAssistantChatOptions = {
+                        integrationID: "734a3381-d7c0-40d2-85cd-78f88eb4e9d3", // The ID of this integration.
+                        region: "us-south", // The region your integration is hosted in.
+                        serviceInstanceID: "0ef7855c-d4c8-435f-84cc-cb8a813198d4", // The ID of your service instance.
+                        onLoad: function(instance) { instance.render(); }
+                      };
+                    setTimeout(function(){
+                      const t=document.createElement('script');
+                      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+                      document.head.appendChild(t);
+                    });
+                  </script>   
+        
     
         <!-- This is our footer-->
         <div class = "footer">
