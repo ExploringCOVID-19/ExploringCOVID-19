@@ -11,6 +11,7 @@ Our project's mission is to...
 # PROJECT FEATURES
 - Choropleth_positivity_rates
 - covid19_choropleth
+- covid-19 chatbot: A chatbot built using IBM Watson that informs the user and answers covid-19 related questions. 
 
 # LANGUAGE 
 - We use mostly Python 3 for our project. Python is a high-level programming language with a wide range of uses, making it ideal for what we plan to do. In the future, we plan to use HTML and CSS in creating a website to host our findings.
