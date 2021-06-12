@@ -29,7 +29,7 @@ main, .main-content {
   margin-top: -10px;
   margin: -20px -20px 0 -20px;
   height: 400px;
-  background: url("/images/banner.png") no-repeat;
+  background: url("./images/banner.png") no-repeat;
   background-position: 100%;
   background-size: cover;
  
