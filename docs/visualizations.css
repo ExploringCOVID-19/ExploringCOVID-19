@@ -1,33 +1,43 @@
 .cards {
     display:flex; 
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: space-around;
-    flex-wrap: wrap-reverse;
+    flex-direction: column;
+     /* flex-wrap: wrap; */
+    /* justify-content: space-around; */
+    /* align-content: space-around; */
+   
     
-    margin-left: 20%;
-    margin-right: 20%;
-  
+    /* margin-left: 20%; */
+    /* margin-right: 20%; */
 }
 .cards div {
-    margin-right: 60px;
     /* Repetitive code */
-    background-size:contain;
-    background-repeat: no-repeat;
-    background-position: auto;
+    /* background-size:contain; */
+    /* background-repeat: no-repeat; */
+    /* background-position: auto; */
     width: 30%;
-    height: 300px;
+    /* height: 300px; */
     margin-top: 50px;
-​
+    justify-content: center;
+
 }
 
 
-.card1 {
-    background-image: url("./Documents/visualizations_pics/Fully_vaccinated_prediction.jpg");
+.cards img, .cards video{
+    height: 60;
+    width: 80rem;
+
+}
+
+
+
+
+
+/* .card1 {
+    
 }
 
 .card2 {
-    background-image: <a href= ;
+    background-image: url() ;
 }
 
 .card3 {
@@ -40,4 +50,33 @@
 
 .card5 {
     background-image: url("");
+} */
+
+.prediction-model {         
+    margin-top: 200px ;
+    margin-right: 50px ;
+    margin-left: 50px
+    
 }
+
+.prediction-model h3 {
+    margin-left: 60px
+
+}
+.prediction-model p {
+    margin-left: 60px
+}
+.prediction-model h4 {
+    margin-left: 60px
+
+
+
+ }
+
+ .cards h4 {
+
+ }
+
+ .cards p {
+
+ }
