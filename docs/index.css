@@ -38,7 +38,7 @@ main, .main-content {
 
 
 .topic {
-    margin-left: 45%;
+    text-align: center;
 }
 
 .question {
@@ -206,3 +206,18 @@ background-color: #76b7c4;
     }
   }
 /*purpose page*/
+
+
+footer {
+  margin-top: 100px;
+  /* text-align: center; */
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+footer img {
+  height: 150px;
+  width: 250px;
+}
+
