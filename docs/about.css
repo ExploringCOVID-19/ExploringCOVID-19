@@ -27,10 +27,16 @@
     border-radius: 50px;
 }
 
-/* Center and resize Florianny's image so it's not stretched*/
-#florianny img {
-    width: 11rem;
-    margin: 0 10% 0 28%;
+/* Center and resize Florianny's image so it's not stretched horizontally*/
+/* #florianny img { */
+    /* width: 11rem; */
+    /* margin: 0 10% 0 28%; */
+/* } */
+
+/* Center and resize Dina's image so it's not stretched vertically */
+#dina img {
+    height: 20rem;
+    margin: 10%;
 }
 
 h3 {
