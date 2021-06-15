@@ -2,12 +2,12 @@
 import pandas as pd
 import plotly.express as px
 import numpy as np 
+
 def datafilter():
     df = pd.read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv")
     df["positive_rate"] = df["positive_rate"]*100
     newdf = df.loc[:, ["positive_rate", "location", "date"]].copy()
-    # newdf3 = newdf2.loc[newdf2["positive_rate"]==]
-    # positiveList = list(df["positive_rate"])
+    
     newdf["positive_rate"][0] = 0
     for n , i in enumerate(newdf["positive_rate"]):
         if n == 0: 
@@ -28,33 +28,11 @@ def animatedChoroplethmap():
     color = "positive_rate", # sets the color values based on the date
     color_continuous_scale = colors, # sets the colorscale based on array of HEX values
     hover_name = our_df["location"],  
-    # range_color = [0, 10],
     animation_frame = our_df["date"],
-    # colorbar = dict(nticks=10),
     title = "Global Covid-19 Positivity Rates (millions)"
     )
     fig.update_layout(
-        # title_text = "Global Covid-19 Positivity Rates (millions)",
         geo = dict(
         showcoastlines = True, coastlinecolor = "blue",
         ))
     fig.write_html("positivityrate.html", auto_open = True)    
-# def day(): 
-#     date = str(input("Which date would you like to look at? (YYYY-MM-DD) (starting date is 2020-01-24)"))
-#     date_list = df['date'].tolist()
-#     check = date in date_list
-#     if check == True:
-#         choroplethmap(date)
-#      else:
-#         print("This date is not inside of the data. Please try again.")
-# def contining():
-#     interested = True
-#      while interested == True:
-#         Continue = input("Would you like to see global covid19 data? please type 'yes' or 'no' ")
-#         if Continue.lower() == "yes":
-#             day()
-#         else:
-#            interested = False
-#            break
-#     return interested
-animatedChoroplethmap()
